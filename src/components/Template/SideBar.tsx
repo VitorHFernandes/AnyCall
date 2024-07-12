@@ -1,5 +1,5 @@
 import useAuth from "@/data/hook/useAuth"
-import { IconReports, IconExit, IconDevices } from "../Icons/Icons"
+import { IconReports, IconExit, IconDevices, IconAdd } from "../Icons/Icons"
 import Logo from "./Logo"
 import MenuItem from "./MenuItem"
 import Link from "next/link"
@@ -14,13 +14,14 @@ const SideBar = () => {
         </Link>
       </div>
       <ul className={`flex-grow`}>
-        <MenuItem url="/relatorios" text="Relatórios" icon={ IconReports } />
-        <MenuItem url="/devices" text="sessions" icon={ IconDevices } />
+        <MenuItem url="/reports" text="Relatórios" icon={ IconReports() } />
+        <MenuItem url="/devices" text="Dispositivos" icon={ IconDevices() } />
+        <MenuItem url="/registration" text="Cadastros" icon={ IconAdd() } />
       </ul>
       <ul>
         <MenuItem 
           onClick={logOut}
-          text="Exit" icon={ IconExit }
+          text="Exit" icon={ IconExit() }
           className={`
             text-redLightItem dark:errorDarkItem
             hover:bg-errorLightItem hover:text-white

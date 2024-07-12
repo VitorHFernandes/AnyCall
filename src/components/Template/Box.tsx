@@ -1,6 +1,6 @@
 import Link from "next/link"
 
-interface iMenuItem {
+interface iBox {
   url?: string,
   text: string,
   icon: any,
@@ -8,34 +8,35 @@ interface iMenuItem {
   onClick?: (event: any) => void
 }
 
-const MenuItem = ({ url, text, icon, className, onClick}: iMenuItem) => {
+const Box = ({ url, text, icon, className, onClick}: iBox) => {
+
   const renderLink = () => {
     return (
       <div 
         className={`
           flex flex-col justify-center items-center
-          text-white h-20 w-20
+          text-black h-64 w-64
           dark:text-white ${className}
         `}>
           { icon }
-          <span className={`text-xs font-light`}></span>
+          <span className={`text-sm font-light mt-7`}>{ text }</span>
       </div>
     )
   }
 
   return(
-    <li onClick={ onClick } className={`ease-in duration-150 hover:shadow-2xl dark:hover:bg-hoverItemDark cursor-pointer`}>
+    <div onClick={ onClick } className={`ease-in duration-150 shadow-md hover:shadow-2xl dark:bg-hoverItemDark cursor-pointer`}>
       {
         url ? (
-          <Link href={ url } className={`flex flex-col justify-center items-center h-20 w-20`}>
+          <Link href={ url } className={`flex flex-col justify-center items-center`}>
             { renderLink() }
           </Link>
         ) : (
           renderLink()
         )
       }
-    </li>
+    </div>
   )
 }
 
-export default MenuItem
+export default Box
