@@ -2,13 +2,15 @@ import Link from "next/link"
 
 interface iBox {
   url?: string,
+  title?: string,
   text: string,
-  icon: any,
+  icon?: any,
+  classDiv?: string,
   className?: string,
   onClick?: (event: any) => void
 }
 
-const Box = ({ url, text, icon, className, onClick}: iBox) => {
+const Box = ({ url, text, icon, className, title, onClick, classDiv = 'shadow-md hover:shadow-2xl cursor-pointer'}: iBox) => {
 
   const renderLink = () => {
     return (
@@ -19,16 +21,21 @@ const Box = ({ url, text, icon, className, onClick}: iBox) => {
           dark:text-white ${className}
         `}>
           { icon }
-          <span className={`text-sm font-light mt-7`}>{ text }</span>
+          {title ? (
+            <h1 className={`${className} 2xl:text-8xl xl:text-7xl lg:text-6xl md:text-5xl sm:text-3xl`}>
+              {title}
+            </h1>
+          ) : false}
+          <span className={`2xl:text-md sm:text-sm ${className} font-light mt-5`}>{ text }</span>
       </div>
     )
   }
 
   return(
-    <div onClick={ onClick } className={`ease-in duration-150 shadow-md hover:shadow-2xl dark:bg-hoverItemDark cursor-pointer`}>
+    <div onClick={ onClick } className={`ease-in duration-150 flex flex-col justify-center items-center dark:bg-hoverItemDark ${classDiv}`}>
       {
         url ? (
-          <Link href={ url } className={`flex flex-col justify-center items-center`}>
+          <Link href={ url }>
             { renderLink() }
           </Link>
         ) : (

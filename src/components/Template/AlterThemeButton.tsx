@@ -16,7 +16,7 @@ const AlterThemeButton = ({ theme, alterTheme }: iAlterThemeButton) => {
       `}
     >
       <div className={`flex items-center justify-center rounded-full bg-white w-6 h-6`}>
-        { IconSun }
+        { IconSun() }
       </div>
     </div>
   ) : (

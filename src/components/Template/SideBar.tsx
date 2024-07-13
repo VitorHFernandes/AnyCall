@@ -1,5 +1,5 @@
 import useAuth from "@/data/hook/useAuth"
-import { IconReports, IconExit, IconDevices, IconAdd } from "../Icons/Icons"
+import { IconReports, IconExit, IconChat, IconSettings, IconHome } from "../Icons/Icons"
 import Logo from "./Logo"
 import MenuItem from "./MenuItem"
 import Link from "next/link"
@@ -7,16 +7,17 @@ import Link from "next/link"
 const SideBar = () => {
   const { logOut } = useAuth()
   return (
-    <aside className={`flex flex-col bg-lightItem text-black dark:bg-darkItem dark:text-white`}>
+    <aside className={`flex flex-col h-full bg-lightItem text-black dark:bg-darkItem dark:text-white`}>
       <div className={`flex flex-col items-center justify-center h-20 w-20 cursor-pointer `}>
         <Link href="/">
           <Logo />
         </Link>
       </div>
       <ul className={`flex-grow`}>
-        <MenuItem url="/reports" text="Relatórios" icon={ IconReports() } />
-        <MenuItem url="/devices" text="Dispositivos" icon={ IconDevices() } />
-        <MenuItem url="/registration" text="Cadastros" icon={ IconAdd() } />
+        <MenuItem url="/"           text="Home"           icon={ IconHome() } />
+        <MenuItem url="/dashboard"  text="Dashboard"      icon={ IconReports() } />
+        <MenuItem url="/chat"       text="Chat"           icon={ IconChat() } />
+        <MenuItem url="/settings"   text="Configurações"  icon={ IconSettings() } />
       </ul>
       <ul>
         <MenuItem 

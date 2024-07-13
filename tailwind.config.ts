@@ -11,13 +11,20 @@ const config: Config = {
     extend: {
       colors: { 
         "darkItem": "#1e1f1f",
+        "hoverItemDark": "#363637",
+        "hoverTableDark": "#2c2c2c",
+        "erroDarkItem": "#CF6679",
+        "toggleDark": "#3F3F46",
+        "secundary": "#03DAC5",
+        "purpleDark": "#BB86FC",
+        
         "lightItem": "#6200EE",
         "primaryLight": "#3700B3",
+        "purpleLight": "#4B00D1",
+        "purpleTable": "#dbb2ff",
         "errorLightItem": "#B00020",
-        "errorDarkItem": "#CF6679",
         "redLightItem": "#E30425",
-        "hoverItemDark": "#363637",
-        "toggleDark": "#3F3F46",
+        "greenLightItem": "#2E7D32",
         "toggleLight": "#D4D4D8"
       },
       backgroundImage: {

@@ -64,7 +64,7 @@ const Auth = () => {
               border border-red-700 rounded-lg
             `}
           >
-            { IconWarn }
+            { IconWarn() }
             <span className="ml-3">{ error }</span>
           </div>
         ) : false }
