@@ -5,6 +5,7 @@ import Header from "./Header"
 import ForceAuth from '../Auth/ForceAuth'
 import SideBar from "./SideBar"
 
+
 interface iLayout {
   title: string,
   subtitle: string,
@@ -16,9 +17,9 @@ const Layout = ({ title, subtitle, children }: iLayout) => {
 
   return (
     <ForceAuth>
-      <div className={`${theme} flex h-screen w-screen`}>
+      <div className={`${theme} flex h-screen w-screen min-h-screen`}>
         <SideBar />
-        <div className={`flex flex-col w-full p-7 bg-white dark:bg-black`}>
+        <div className={`flex-1 flex-col w-full p-7 bg-white overflow-auto dark:bg-black`}>
           <Header title={ title } subtitle={ subtitle } />
           <Content>
             { children }

@@ -5,16 +5,16 @@ import { IconDelete, IconEdit } from "../Icons/Icons"
 
 interface iTable {
   sessions: Record<string, any>[]
-} 
+}
 
 const Table = ({ sessions }: iTable) => {
   const { theme } = useAppData()
-  const IconColor = theme === '' || theme === 'light' ? '#00000' : '#FFFFFF';
+  const IconColor = theme === '' || theme === 'light' ? '#000000' : '#FFFFFF';
 
   const renderHeader = () => {
     const headers = Object.keys(sessions[0]);
     return (
-      <tr>
+      <tr className="hidden lg:table-row">
         {headers.map((header, i) => (
           <th key={i} className="text-center p-4">
             {header}
@@ -28,59 +28,95 @@ const Table = ({ sessions }: iTable) => {
   }
 
   const renderData = () => {
-    return sessions.map((session, rowIndex) => 
-      <tr 
-        key={rowIndex} 
+    const headers = Object.keys(sessions[0]);
+    return sessions.map((session, rowIndex) => (
+      <tr
+        key={rowIndex}
         className={`
-          ${rowIndex % 2 === 0 ? 'bg-purple-200' : 'bg-purple-100'} 
+          ${rowIndex % 2 === 0 ? 'bg-purple-200' : 'bg-purple-100'}
           ${rowIndex % 2 === 0 ? 'dark:bg-hoverTableDark' : 'dark:bg-hoverItemDark'}
-        `}>
+          lg:table-row
+        `}
+      >
         {Object.values(session).map((value, colIndex) => (
-          <td key={colIndex} className="text-center p-4">
+          <td key={colIndex} className="text-center p-4 lg:table-cell hidden">
             {value}
           </td>
         ))}
-        {renderActions()}
+        <td className="lg:table-cell hidden">
+          {renderActions()}
+        </td>
       </tr>
-    );
+    ));
   }
 
   const renderActions = () => {
-    return(
+    return (
       <td className="flex justify-center items-center">
-        <button 
+        <button
           className={`
-            flex justify-center items-center p-2 m-1
+            flex justify-center items-center py-2 px-2
             text-green-600 rounded-full hover:bg-purple-50 dark:hover:bg-purpleDark
-          `}  
+          `}
         >
           {IconEdit(24, IconColor)}
         </button>
-        <button 
+        <button
           className={`
-            flex justify-center items-center p-2 m-1
+            flex justify-center items-center py-2 px-2
             text-red-500 rounded-full hover:bg-purple-50 dark:hover:bg-redLightItem
-          `}  
+          `}
         >
           {IconDelete(24, IconColor)}
         </button>
       </td>
-    )
+    );
+  }
+
+  const renderResponsiveData = () => {
+    const headers = Object.keys(sessions[0]);
+    return sessions.map((session, rowIndex) => (
+      <div
+        key={rowIndex}
+        className={`
+          ${rowIndex % 2 === 0 ? 'bg-purple-200' : 'bg-purple-100'}
+          ${rowIndex % 2 === 0 ? 'dark:bg-hoverTableDark' : 'dark:bg-hoverItemDark'}
+          p-4
+          lg:hidden
+        `}
+      >
+        {headers.map((header, colIndex) => (
+          <div key={colIndex} className="flex justify-between">
+            <dt className="font-bold">{header}</dt>
+            <dd>{session[header]}</dd>
+          </div>
+        ))}
+        <div className="flex justify-between items-center">
+          <dt className="font-bold">Ações</dt>
+          <dd>{renderActions()}</dd>
+        </div>
+      </div>
+    ));
   }
 
   return (
-      <table className="w-full table-auto rounded-xl overflow-auto-x">
-        <thead 
-          className={`
+    <div className="min-h-screen">
+      <table className="w-full rounded-xl overflow-hidden lg:table hidden">
+        <thead
+          className="
             text-white
             bg-lightItem dark:bg-darkItem
-          `}>
+          ">
           {renderHeader()}
         </thead>
         <tbody>
           {renderData()}
         </tbody>
       </table>
+      <div className="lg:hidden rounded-xl overflow-hidden">
+        {renderResponsiveData()}
+      </div>
+    </div>
   )
 }
 

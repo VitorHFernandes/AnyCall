@@ -1,5 +1,6 @@
 'use client'
 
+import AppBar from "@/components/Template/AppBar"
 import Box from "@/components/Template/Box"
 import Layout from "@/components/Template/Layout"
 import Table from "@/components/Template/Table"
@@ -71,14 +72,17 @@ const Devices = () => {
           <Box classDiv="shadow-xl cursor-default" text="Sessões Inativas" className={`font-bold text-purpleLight dark:text-purpleDark`} title="1"  />
         </div>   
         <div className="flex justify-end mt-48">
-          <button className="mb-6 rounded-lg w-1/6 h-full text-white bg-lightItem hover:bg-primaryLight dark:bg-hoverItemDark dark:hover:bg-darkItem">
-            Cadastrar
-          </button>
+        <button className="hidden lg:inline-block rounded-lg w-1/6 h-12 text-white bg-lightItem hover:bg-primaryLight dark:bg-hoverItemDark dark:hover:bg-darkItem">
+          Cadastrar
+        </button>
         </div>
         <div className={`mt-2`}>
+
           <Table sessions={sessions} />
         </div>
+        <AppBar />
       </Layout>
+      
     </div>
   )
 }
