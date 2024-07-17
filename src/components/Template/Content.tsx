@@ -1,4 +1,3 @@
-
 type tChildren = { children: React.ReactNode }
 
 const Content = ({ children }: tChildren) => {
