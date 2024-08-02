@@ -11,6 +11,7 @@ type tModalActionProps = {
 } & React.ButtonHTMLAttributes<HTMLButtonElement>
 
 export const ModalAction = ({
+  id,
   children,
   className,
   color = 'none',
@@ -22,6 +23,8 @@ export const ModalAction = ({
     <>
       <button
         { ...rest }
+        type="submit"
+        form={id}
         onClick={onClick}
         className={colorButton}
       >

@@ -126,7 +126,12 @@ export const IconEdit = (size = 24, color = '#FFFFFF') => (
 
 export const IconClose = (size = 24, color = '#FFFFFF') => (
   <svg xmlns="http://www.w3.org/2000/svg" height={size} viewBox="0 -960 960 960" width={size} fill={color}>
-    <path d="m252-212-38-40 227-228-227-230 38-40 229 230 227-230 38 40-227 230 227 228-38 40-227-230-229 230Z"/>
+    <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
   </svg>
 )
 
+export const IconCheck = (size = 24, color = '#FFFFFF') => (
+  <svg xmlns="http://www.w3.org/2000/svg" height={size} viewBox="0 -960 960 960" width={size} fill={color}>
+    <path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/>
+  </svg>
+)

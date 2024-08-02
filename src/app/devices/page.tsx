@@ -1,17 +1,34 @@
 'use client'
 
 import { IconClose } from "@/components/Icons/Icons"
-import Box from "@/components/Template/Box"
-import Layout from "@/components/Template/Layout"
+import { useState, useEffect } from "react"
 import { Modal } from "@/components/Template/Modal"
+import { useForm, SubmitHandler } from "react-hook-form"
+import Box from "@/components/Template/Box"
 import Table from "@/components/Template/Table"
+import Layout from "@/components/Template/Layout"
 import useAppData from "@/data/hook/useAppData"
-import { useState } from "react"
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
+
+type tInputPhone = {
+  telphoneDevice: string
+};
 
 const Devices = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm<tInputPhone>();
+
+  const onSubmit: SubmitHandler<tInputPhone> = data => console.log(data);
+
+  useEffect(() => {
+    register('telphoneDevice', { required: 'Telefone é obrigatório' });
+  }, [register]);
+
+
 
   const { theme } = useAppData()
+  
   const sessions = [
     {
       ID: 1,
@@ -67,6 +84,7 @@ const Devices = () => {
     },
   ]
 
+
   const handleOpenModal = () => setIsOpen(true);
   const handleCloseModal = () => setIsOpen(false);
   
@@ -78,6 +96,7 @@ const Devices = () => {
   }
 
   const color = getThemeColor(theme)
+
 
   return (
     <div>
@@ -100,12 +119,7 @@ const Devices = () => {
         <div className={`mt-2`}>
 
           <Table sessions={sessions} />
-          {/* 
-            <Modal isOpen={isOpen} onClose={handleCloseModal} hasActions> 
-              <h1>teste</h1>
-            </Modal>
-          */}
-
+          
           <Modal.Root isOpen={isOpen}>
             <Modal.Header className="font-semibold">
               <Modal.Title>Cadastro de dispositivo</Modal.Title> 
@@ -114,10 +128,26 @@ const Devices = () => {
               </Modal.Action>
             </Modal.Header>
             <Modal.Content>
-              <h2>Teste de modal</h2>
+              <div className={`flex flex-col items-center`}>
+                <form id='hook-form' className={`flex items-center justify-center`} onSubmit={handleSubmit(onSubmit)}>
+                  <PhoneInput
+                    country={'br'}
+                    enableSearch
+                    searchNotFound="País não encontrado. Certifique-se de estar utilizando o nome oficial"
+                    containerClass={`text-black dark:bg-black flex items-center`}
+                    inputClass={`color:`}
+                    onChange={phone => setValue('telphoneDevice', phone)}
+                    inputProps={{
+                      required: true,
+                      autoFocus: true 
+                    }}
+                  />
+                  {errors.telphoneDevice && <p>{errors.telphoneDevice.message}</p>}
+                </form>
+              </div>
             </Modal.Content>
             <Modal.Actions>
-              <Modal.Action color={color}>
+              <Modal.Action id={'hook-form'} color={color}>
                 Salvar
               </Modal.Action>
             </Modal.Actions>
